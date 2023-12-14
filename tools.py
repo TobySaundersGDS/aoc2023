@@ -12,4 +12,4 @@ def fetch_input(url, sid: str = str(os.environ.get('AOC_SID'))) -> str:
 
 
 def split_by_line(input_string) -> list:
-    return input_string.split("\n")
+    return input_string[:-1].split("\n")
