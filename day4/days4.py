@@ -16,21 +16,20 @@ for scratchie in scratchies:
         multiple_tally[this_card_number-1] += 1
     except IndexError:
         multiple_tally.append(1)
-    for x in range(multiple_tally[this_card_number-1]):
-        this_win = 0
-        win_count = 0
-        for number in mynumbers:
-            if number in winning_numbers:
-                win_count += 1
-                try:
-                    multiple_tally[this_card_number - 1 + win_count] += 1
-                except IndexError:
-                    multiple_tally.append(1)
-                if this_win == 0:
-                    this_win = 1
-                else:
-                    this_win = this_win*2
-        winning_tally += this_win
+    this_win = 0
+    win_count = 0
+    for number in mynumbers:
+        if number in winning_numbers:
+            win_count += 1
+            try:
+                multiple_tally[this_card_number - 1 + win_count] += multiple_tally[this_card_number - 1]
+            except IndexError:
+                multiple_tally.append(multiple_tally[this_card_number - 1])
+            if this_win == 0:
+                this_win = 1
+            else:
+                this_win = this_win*2
+    winning_tally += this_win
 
 print(winning_tally)
 print(multiple_tally)
